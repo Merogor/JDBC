@@ -101,17 +101,16 @@ public class Main {
             //Automatische Festlegung der DJid
             int iddj = generateID(resultDJid, sidDJ);
 
-
             System.out.println("Bitte Vornamen eingeben: ");
             String vorname = in2.nextLine();
-            while (!(vorname.matches("^[a-zA-Z]*$"))) {
+            while (vorname.length() == 0 || vorname.length() > 20) {
                 System.out.println("Dieser Vorname ist ungültig, bitte gültigen Vornamen eingeben: ");
                 vorname = in2.nextLine();
             }
 
             System.out.println("Bitte Nachnamen eingeben: ");
             String nachname = in2.nextLine();
-            while (!(nachname.matches("^[a-zA-Z]*$"))) {
+            while (nachname.length() == 0 || nachname.length() > 20) {
                 System.out.println("Dieser Nachname ist ungültig, bitte gültigen Vornamen eingeben: ");
                 vorname = in2.nextLine();
             }
@@ -126,7 +125,7 @@ public class Main {
 
             System.out.println("Bitte Künstlernamen eingeben: ");
             String kname = in2.nextLine();
-            while (!(kname.matches("^[a-zA-Z ]*$"))) {
+            while (kname.length() == 0 || kname.length() > 40) {
                 System.out.println("Dieser Künstlername ist ungültig, bitte gültigen Künstlernamen eingeben: ");
                 kname = in2.nextLine();
             }
@@ -139,7 +138,7 @@ public class Main {
 
             System.out.println("Bitte Straße eingeben: ");
             String strasse = in2.nextLine();
-            while (!(strasse.matches("^[a-zA-Z ]*$"))) {
+            while (strasse.length() == 0 || strasse.length() > 50) {
                 System.out.println("Dieser Strassenname ist ungültig, bitte gültigen Strassennamen eingeben: ");
                 strasse = in2.nextLine();
             }
@@ -153,21 +152,21 @@ public class Main {
 
             System.out.println("Bitte Postleitzahl eingeben: ");
             int plz = in.nextInt();
-            while (plz <= 0 && plz >= 99999) {
+            while (plz < 10000 && plz >= 99999) {
                 System.out.println("Diese Postleitzahl ist ungültig. Bitte erneut eingeben: ");
                 plz = in.nextInt();
             }
 
             System.out.println("Bitte Stadt eingeben: ");
             String stadt = in2.nextLine();
-            while (!(stadt.matches("^[a-zA-Z ]*$"))) {
+            while (stadt.length() == 0 || stadt.length() > 30) {
                 System.out.println("Dieser Stadtnname ist ungültig, bitte gültigen Stadtnamen eingeben: ");
                 stadt = in2.nextLine();
             }
 
             System.out.println("Bitte Land eingeben: ");
             String land = in2.nextLine();
-            while (!(land.matches("^[a-zA-Z ]*$"))) {
+            while (land.length() == 0 || land.length() > 30) {
                 System.out.println("Dieser Landname ist ungültig, bitte gültigen Landnnamen eingeben: ");
                 land = in2.nextLine();
             }
@@ -179,14 +178,14 @@ public class Main {
             //Automatische Festlegung von KontaktdatenID
             int idKontakt = generateID(resultKontaktid, sKontaktid);
 
-
+            //TODO Nummer als String
             System.out.println("Bitte Festnetznummer eingeben: ");
             int festnr = in.nextInt();
             while (festnr <= 0 && festnr > 999999999) {
                 System.out.println("Diese Festnetznummer ist ungültig. Bitte erneut eingeben: ");
                 festnr = in.nextInt();
             }
-
+            //TODO Nummer als String
             System.out.println("Bitte Mobilnummer eingeben: ");
             int mobilnr = in.nextInt();
             while (mobilnr >= 0 && mobilnr > 999999999) {
@@ -196,7 +195,7 @@ public class Main {
 
             System.out.println("Bitte email eingeben: ");
             String mail = in2.nextLine();
-            while (mail.length() < 5) {
+            while (mail.length() == 0 || mail.length() > 30) {
                 System.out.println("Diese Email ist ungültig, bitte gültige Email eingeben: ");
                 mail = in2.nextLine();
             }
@@ -290,12 +289,13 @@ public class Main {
     }
 
     /**
-     * Ruft die Stored Procedure 'updatePreis' mit vom Nutzer eingegebenen Parameter auf
+     * Ruft die Stored Procedure 'updatePreis' mit vom Nutzer eingegebenen Parametern auf
      */
     private static void storedProcedure() {
         try {
             Scanner priceUpdate = new Scanner(System.in);
             System.out.println("Um welchen Faktor sollen die Preise erhöht werden: ");
+
             //Vom Nutzer eingegebener DECIMAL, welcher die Preiserhöhung bestimmt
             double k = priceUpdate.nextDouble();
 

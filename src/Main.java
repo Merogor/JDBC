@@ -27,31 +27,46 @@ public class Main {
             System.out.print("Ihre Eingabe: ");
 
             Scanner in = new Scanner(System.in);
-            int choice = in.nextInt();
-            if (choice != 1 && choice != 2 && choice != 3 && choice != 4) choice = 5;
+            String choice = in.nextLine();
+            boolean finished = false;
 
-            switch (choice) {
-                case 1:
-                    erfassungObjekt();
-                    break;
+            while(!finished) {
 
-                case 2:
-                    abfrage();
-                    break;
+                switch (choice) {
+                    case "1":
+                        erfassungObjekt();
+                        break;
 
-                case 3:
-                    storedProcedure();
-                    break;
+                    case "2":
+                        abfrage();
+                        break;
 
-                case 4:
-                    System.out.println("Programm wird beendet");
-                    System.exit(0);
+                    case "3":
+                        storedProcedure();
+                        break;
 
-                case 5:
-                    System.out.println("Falsche Eingabe -> Programm wird beendet");
-                    System.exit(0);
-            }
+                    case "4":
+                        System.out.println("Programm wird beendet");
+                        finished = true;
+                        break;
+                    default:
+                        System.out.println("Falsche Eingabe -> Programm wird beendet");
+                        finished = true;
 
+                }
+                if(!finished) {
+                    System.out.println("\n---------------------------------------------------------------------------");
+                    System.out.println("-----------------Datenbankzugriff aus einer Java-Anwendung-----------------");
+                    System.out.println("---------------------------------------------------------------------------\n\n");
+                    System.out.println("Welche Aufgabenstellung möchten sie starten? Bitte wählen sie durch eingabe von 1, 2, 3 oder 4 aus folgenden Möglichkeiten: \n");
+                    System.out.println("Auswahl 1 --- Erfassung eines Javaobjekts");
+                    System.out.println("Auswahl 2 --- Abfrage von Datensätzen");
+                    System.out.println("Auswahl 3 --- Stored Procedure");
+                    System.out.println("Auswahl 4 --- Programm beenden\n");
+                    System.out.print("Ihre Eingabe: ");
+                    choice = in.nextLine();
+                }
+            }//while
             in.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -279,7 +294,7 @@ public class Main {
             if (check == 0) {
                 System.out.println("Es gibt keine Getränke, welche den Auswahlkriterien entsprechen.");
             }
-            border.close();
+            //border.close();
             stmt.close();
             result.close();
 

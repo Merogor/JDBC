@@ -195,18 +195,12 @@ public class Main {
 
             //TODO Nummer als String
             System.out.println("Bitte Festnetznummer eingeben: ");
-            int festnr = in.nextInt();
-            while (festnr <= 0 && festnr > 999999999) {
-                System.out.println("Diese Festnetznummer ist ungültig. Bitte erneut eingeben: ");
-                festnr = in.nextInt();
-            }
+            String festnr = in.nextLine();
+
             //TODO Nummer als String
             System.out.println("Bitte Mobilnummer eingeben: ");
-            int mobilnr = in.nextInt();
-            while (mobilnr >= 0 && mobilnr > 999999999) {
-                System.out.println("Diese Eingabe ist ungültig - IDs können von 1 - 100 vergeben werden. Bitte erneut eingeben: ");
-                mobilnr = in.nextInt();
-            }
+            String mobilnr = in.nextLine();
+
 
             System.out.println("Bitte email eingeben: ");
             String mail = in2.nextLine();
@@ -243,8 +237,8 @@ public class Main {
             PreparedStatement kontin = connection.prepareStatement(
                     "INSERT INTO `Kontaktdaten` (`idKontaktdaten`, `festnetznummer`, `mobilnummer`, `emailadresse`) VALUES (?, ?, ?, ?)");
             kontin.setInt(1, newKon.getIdKontaktdaten());
-            kontin.setInt(2, newKon.getFestnetznummer());
-            kontin.setInt(3, newKon.getMobilnummer());
+            kontin.setString(2, newKon.getFestnetznummer());
+            kontin.setString(3, newKon.getMobilnummer());
             kontin.setString(4, newKon.getEmailadresse());
             kontin.addBatch();
             kontin.executeBatch();

@@ -1,8 +1,8 @@
 public class Kontaktdaten {
 
     private int idKontaktdaten;
-    private int festnetznummer;
-    private int mobilnummer;
+    private String festnetznummer;
+    private String mobilnummer;
     private String emailadresse;
 
     public Kontaktdaten(int idKontaktdaten, int festnetznummer, int mobilnummer, String emailadresse) {
@@ -30,7 +30,7 @@ public class Kontaktdaten {
         this.idKontaktdaten = idKontaktdaten;
     }
 
-    public int getFestnetznummer() {
+    public String getFestnetznummer() {
         return festnetznummer;
     }
 
@@ -38,7 +38,7 @@ public class Kontaktdaten {
         this.festnetznummer = festnetznummer;
     }
 
-    public int getMobilnummer() {
+    public String getMobilnummer() {
         return mobilnummer;
     }
 
